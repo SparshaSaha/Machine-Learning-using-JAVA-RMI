@@ -4,6 +4,10 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
+import org.apache.commons.math3.*;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.MatrixUtils;
+
 public class Server extends UnicastRemoteObject implements RMIInterface{
   protected Server()throws RemoteException
   {
@@ -26,6 +30,12 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
   }
 
   public static void main(String args[]){
+
+double[][] matrixData = { {1,2,3}, {2,5,3}};
+
+RealMatrix m = MatrixUtils.createRealMatrix(matrixData);
+
+System.out.println(m.transpose().getColumn()[0]);
 
     try{
       LocateRegistry.createRegistry(2020);
