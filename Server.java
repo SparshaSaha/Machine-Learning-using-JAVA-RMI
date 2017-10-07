@@ -8,6 +8,10 @@ import org.apache.commons.math3.*;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.MatrixUtils;
 
+import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.linear.ArrayRealVector;
+
+
 public class Server extends UnicastRemoteObject implements RMIInterface{
 
   protected Server()throws RemoteException
@@ -40,48 +44,58 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
       System.out.println(e.toString());
     }
 
+    //linear_regression_train();
+
   }
 
+  @Override
   public double linear_regression_train(double[] x)
   {
     double x_data[][]=get_x_data();
-    double y_data[]=get_y_data();
+    double y_data[][]=get_y_data();
 
     //Start Training
 
     RealMatrix X=MatrixUtils.createRealMatrix(x_data);
 
-    RealMatrix Y=MatrixUtils.createRealMatrix(y_data);
+    RealMatrix Y =MatrixUtils.createRealMatrix(y_data);
+
+
+
+    Y=Y.transpose();
 
     RealMatrix theta;
 
     RealMatrix X_transpose=X.transpose();
 
-    RealMatrix X_trans_X_mul=X_transpose.mutliply(X);
+    RealMatrix X_trans_X_mul=X_transpose.multiply(X);
 
     RealMatrix Inverse=MatrixUtils.inverse(X_trans_X_mul);
 
     RealMatrix BufferMatrix=Inverse.multiply(X_transpose);
 
-    RealMatrix final_theta=BufferMatrix.multiply(Y);
+    RealMatrix final_theta=BufferMatrix.multiply(Y.transpose());
 
     //End of Training
 
-    
+    System.out.println(final_theta.toString());
+    System.out.println(Y.toString());
 
-
-
-
+    return 23.58;
 
   }
 
-  public double[][] get_x_data()
+  public  double[][] get_x_data()
   {
-      double[][] x={}
+      double[][] x={{25,15,28},{23,45,43}};
+      return x;
+
   }
 
-  public double[] get_y_data()
+  public  double[][] get_y_data()
   {
+    double [][] y={{2},{5}};
+    return y;
 
   }
 

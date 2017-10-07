@@ -12,6 +12,9 @@ public class Client{
     look_up = (RMIInterface) Naming.lookup("//127.0.0.1:2020/server");
     String response = look_up.hello("Sparsha");
     System.out.println(look_up.calculate(23,7));
+    double[] junk={24,3,56};
+
+    look_up.linear_regression_train(junk);
   }
 
 }
