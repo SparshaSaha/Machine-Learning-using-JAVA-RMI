@@ -61,7 +61,6 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
     RealMatrix Y =MatrixUtils.createRealMatrix(y_data);
 
 
-
     Y=Y.transpose();
 
     RealMatrix theta;
@@ -81,11 +80,10 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
     RealMatrix data=MatrixUtils.createRealMatrix(x);
     data=data.transpose();
 
-    System.out.println(data.multiply(final_theta));
+    RealMatrix retdata=data.multiply(final_theta);
 
 
-
-    return 23.58;
+    return retdata.getEntry(0,0);
 
   }
 
