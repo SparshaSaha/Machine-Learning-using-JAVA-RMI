@@ -11,6 +11,9 @@ import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.linear.ArrayRealVector;
 
+import java.util.*;
+import java.io.*;
+
 
 public class Server extends UnicastRemoteObject implements RMIInterface{
 
@@ -49,7 +52,7 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
   }
 
   @Override
-  public double linear_regression_train(double[][] x)
+  public double linear_regression_train(double[][] x)throws IOException
   {
     double x_data[][]=get_x_data();
     double y_data[][]=get_y_data();
@@ -87,16 +90,33 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
 
   }
 
-  public  double[][] get_x_data()
+  public  double[][] get_x_data()throws IOException
   {
-      double[][] x={{25,15,28},{23,45,43}};
+      double[][] x=new double[1000][4];
+      File file=new File("x_data.txt");
+      Scanner sc=new Scanner(file);
+      for(int i=0;i<1000;i++)
+      {
+        for(int j=0;j<4;j++)
+        {
+          x[i][j]=sc.nextDouble();
+        }
+      }
       return x;
 
   }
 
-  public double[][] get_y_data()
+  public double[][] get_y_data()throws IOException
   {
-    double [][] y={{2},{5}};
+    double [][] y=new double[1000][1];
+    File file=new File("y_data.txt");
+    Scanner sc=new Scanner(file);
+
+    for(int i=0;i<1000;i++)
+    {
+      y[i][0]=sc.nextDouble();
+    }
+
     return y;
 
   }

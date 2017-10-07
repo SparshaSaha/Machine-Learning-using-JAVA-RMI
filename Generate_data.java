@@ -32,6 +32,8 @@ class Generate_data{
       ywriter.println(final_amt);
 
     }
+    xwriter.close();
+    ywriter.close();
 
   }
 }
