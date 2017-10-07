@@ -47,7 +47,12 @@ System.out.println(m.transpose().getColumn()[0]);
 
   }
 
-  public int linear_regression_train(double[] x)
+  public double linear_regression_train(double[] x)
+  {
+
+  }
+
+  public double get_x_data()
   {
     
   }
