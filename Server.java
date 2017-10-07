@@ -49,7 +49,7 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
   }
 
   @Override
-  public double linear_regression_train(double[] x)
+  public double linear_regression_train(double[][] x)
   {
     double x_data[][]=get_x_data();
     double y_data[][]=get_y_data();
@@ -78,8 +78,12 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
 
     //End of Training
 
-    System.out.println(final_theta.toString());
-    System.out.println(Y.toString());
+    RealMatrix data=MatrixUtils.createRealMatrix(x);
+    data=data.transpose();
+
+    System.out.println(data.multiply(final_theta));
+
+
 
     return 23.58;
 
@@ -92,7 +96,7 @@ public class Server extends UnicastRemoteObject implements RMIInterface{
 
   }
 
-  public  double[][] get_y_data()
+  public double[][] get_y_data()
   {
     double [][] y={{2},{5}};
     return y;

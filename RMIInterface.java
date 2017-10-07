@@ -5,6 +5,6 @@ public interface RMIInterface extends Remote{
 
   public int calculate(int a,int b)throws RemoteException;
 
-  public double linear_regression_train(double[] x)throws RemoteException;
+  public double linear_regression_train(double[][] x)throws RemoteException;
 
 }
