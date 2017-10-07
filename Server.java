@@ -9,6 +9,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.MatrixUtils;
 
 public class Server extends UnicastRemoteObject implements RMIInterface{
+  
   protected Server()throws RemoteException
   {
     super();
@@ -49,11 +50,29 @@ System.out.println(m.transpose().getColumn()[0]);
 
   public double linear_regression_train(double[] x)
   {
+    double x_data[][]=get_x_data();
+    double y_data[]=get_y_data();
+
+    RealMatrix X=MatrixUtils.createRealMatrix(x_data);
+
+    RealMatrix Y=MatrixUtils.createRealMatrix(y_data);
+
+    RealMatrix theta;
+
+
+
+
 
   }
 
-  public double get_x_data()
+  public double[][] get_x_data()
   {
-    
+
   }
+
+  public double[] get_y_data()
+  {
+
+  }
+
 }
