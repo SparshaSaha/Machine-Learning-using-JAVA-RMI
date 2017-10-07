@@ -46,4 +46,9 @@ System.out.println(m.transpose().getColumn()[0]);
     }
 
   }
+
+  public int linear_regression_train(double[] x)
+  {
+    
+  }
 }
